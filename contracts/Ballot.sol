@@ -31,8 +31,7 @@ contract Ballot {
   }
 
   function checkRightToVote(Voter memory voter) external returns(bool) {
-    // TODO check if already voted
-    return true;
+    return !voter.voted;
   }
 
   function vote(uint choice) external {
@@ -41,6 +40,7 @@ contract Ballot {
 
     if (hasRightToVote) {
       candidates[choice].voteCount += 1;
+      voter.vote = choice;
     }
   }
 
